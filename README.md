@@ -31,7 +31,7 @@ The following **additional** features are implemented:
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
-<img src='TipWise/preWork_TipWise.gif'/>
+<img src='https://github.com/portia-s/TipWise/blob/master/preWork_TipWise.gif'/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
