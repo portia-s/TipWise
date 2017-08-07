@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		2D01BDE71F34093E0008FDAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BDE61F34093E0008FDAE /* AppDelegate.swift */; };
-		2D01BDE91F34093E0008FDAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BDE81F34093E0008FDAE /* ViewController.swift */; };
 		2D01BDEC1F34093E0008FDAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D01BDEA1F34093E0008FDAE /* Main.storyboard */; };
 		2D01BDEF1F34093E0008FDAE /* TipWise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BDED1F34093E0008FDAE /* TipWise.xcdatamodeld */; };
 		2D01BDF11F34093E0008FDAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D01BDF01F34093E0008FDAE /* Assets.xcassets */; };
 		2D01BDF41F34093E0008FDAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D01BDF21F34093E0008FDAE /* LaunchScreen.storyboard */; };
 		2D01BDFF1F34093E0008FDAE /* TipWiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BDFE1F34093E0008FDAE /* TipWiseTests.swift */; };
 		2D01BE0A1F34093E0008FDAE /* TipWiseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE091F34093E0008FDAE /* TipWiseUITests.swift */; };
+		2D01BE1A1F369DC20008FDAE /* Theme0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE171F369DC20008FDAE /* Theme0.swift */; };
+		2D01BE1E1F369E470008FDAE /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE1D1F369E470008FDAE /* TipViewController.swift */; };
+		2D01BE201F369EE60008FDAE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE1F1F369EE60008FDAE /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 /* Begin PBXFileReference section */
 		2D01BDE31F34093E0008FDAE /* TipWise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipWise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D01BDE61F34093E0008FDAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2D01BDE81F34093E0008FDAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D01BDEB1F34093E0008FDAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D01BDEE1F34093E0008FDAE /* TipWise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TipWise.xcdatamodel; sourceTree = "<group>"; };
 		2D01BDF01F34093E0008FDAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		2D01BE051F34093E0008FDAE /* TipWiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipWiseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D01BE091F34093E0008FDAE /* TipWiseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipWiseUITests.swift; sourceTree = "<group>"; };
 		2D01BE0B1F34093E0008FDAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D01BE171F369DC20008FDAE /* Theme0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme0.swift; sourceTree = "<group>"; };
+		2D01BE1D1F369E470008FDAE /* TipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
+		2D01BE1F1F369EE60008FDAE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				2D01BDE61F34093E0008FDAE /* AppDelegate.swift */,
-				2D01BDE81F34093E0008FDAE /* ViewController.swift */,
+				2D01BE1D1F369E470008FDAE /* TipViewController.swift */,
+				2D01BE1F1F369EE60008FDAE /* SettingsViewController.swift */,
+				2D01BE171F369DC20008FDAE /* Theme0.swift */,
 				2D01BDEA1F34093E0008FDAE /* Main.storyboard */,
 				2D01BDF01F34093E0008FDAE /* Assets.xcassets */,
 				2D01BDF21F34093E0008FDAE /* LaunchScreen.storyboard */,
@@ -265,9 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D01BDE91F34093E0008FDAE /* ViewController.swift in Sources */,
+				2D01BE1A1F369DC20008FDAE /* Theme0.swift in Sources */,
 				2D01BDEF1F34093E0008FDAE /* TipWise.xcdatamodeld in Sources */,
+				2D01BE1E1F369E470008FDAE /* TipViewController.swift in Sources */,
 				2D01BDE71F34093E0008FDAE /* AppDelegate.swift in Sources */,
+				2D01BE201F369EE60008FDAE /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,10 +431,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B2278J6LL2;
 				INFOPLIST_FILE = TipWise/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ipaycheck.TipWise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -436,10 +446,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B2278J6LL2;
 				INFOPLIST_FILE = TipWise/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ipaycheck.TipWise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -520,6 +532,7 @@
 				2D01BE101F34093E0008FDAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D01BE111F34093E0008FDAE /* Build configuration list for PBXNativeTarget "TipWiseTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +541,7 @@
 				2D01BE131F34093E0008FDAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D01BE141F34093E0008FDAE /* Build configuration list for PBXNativeTarget "TipWiseUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +550,7 @@
 				2D01BE161F34093E0008FDAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
