@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tip View Controller-->
+        <!--Tip Wise-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TipViewController" customModule="TipWise" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,14 +23,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xV3-sJ-Oji">
-                                <rect key="frame" x="0.0" y="64" width="375" height="114"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="400"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bill" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-2V-uxn">
-                                        <rect key="frame" x="8" y="-64" width="359" height="170"/>
+                                        <rect key="frame" x="8" y="8" width="359" height="384"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" red="0.30588235294117649" green="0.38039215686274508" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="50"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                                         <connections>
                                             <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="6di-eq-3wg"/>
                                         </connections>
@@ -38,15 +38,15 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.58039215686274503" green="0.90980392156862744" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="WhM-2V-uxn" firstAttribute="top" secondItem="xV3-sJ-Oji" secondAttribute="top" constant="-64" id="GTc-NA-luO"/>
+                                    <constraint firstItem="WhM-2V-uxn" firstAttribute="top" secondItem="xV3-sJ-Oji" secondAttribute="top" constant="8" id="GTc-NA-luO"/>
                                     <constraint firstAttribute="bottom" secondItem="WhM-2V-uxn" secondAttribute="bottom" constant="8" id="N9w-cB-58D"/>
-                                    <constraint firstAttribute="height" constant="114" id="fvx-MF-7JO"/>
+                                    <constraint firstAttribute="height" constant="400" id="fvx-MF-7JO"/>
                                     <constraint firstItem="WhM-2V-uxn" firstAttribute="leading" secondItem="xV3-sJ-Oji" secondAttribute="leading" constant="8" id="icI-jK-eTH"/>
                                     <constraint firstAttribute="trailing" secondItem="WhM-2V-uxn" secondAttribute="trailing" constant="8" id="zH5-90-mhU"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kFd-ue-p3F">
-                                <rect key="frame" x="8" y="186" width="359" height="29"/>
+                                <rect key="frame" x="8" y="472" width="359" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="CFi-fi-bKh"/>
                                 </constraints>
@@ -56,12 +56,13 @@
                                     <segment title="20%"/>
                                     <segment title="Custom"/>
                                 </segments>
+                                <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="U4h-Jh-caQ"/>
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8b-3q-P21">
-                                <rect key="frame" x="0.0" y="222" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="508" width="375" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-yc-AMY">
                                         <rect key="frame" x="58" y="18" width="309" height="63"/>
@@ -118,7 +119,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeG-iC-3VB">
-                                <rect key="frame" x="0.0" y="296" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="582" width="375" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqA-zK-qF0">
                                         <rect key="frame" x="8" y="29.5" width="85" height="31"/>
@@ -172,7 +173,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.44705882349999998" green="0.74117647060000003" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kFd-ue-p3F" firstAttribute="top" secondItem="xV3-sJ-Oji" secondAttribute="bottom" constant="8" id="22h-hQ-Dr0"/>
@@ -192,8 +193,9 @@
                             <outletCollection property="gestureRecognizers" destination="q0a-Vj-EZx" appends="YES" id="aG9-HB-Z7n"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="2Au-nU-XD0">
+                    <navigationItem key="navigationItem" title="Tip Wise" id="2Au-nU-XD0">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="bQE-Gs-aif">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="4CC-UX-MYy" kind="show" id="q9B-J6-N1T"/>
                             </connections>
@@ -346,7 +348,7 @@
                                             <segment title="GBP"/>
                                             <segment title="EUR"/>
                                             <segment title="JPY"/>
-                                            <segment title="AUD"/>
+                                            <segment title="Auto"/>
                                         </segments>
                                         <color key="tintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -365,7 +367,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.44705882349999998" green="0.74117647060000003" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="uRW-gn-b3d" secondAttribute="trailing" id="7Jy-Qm-nZc"/>
                             <constraint firstAttribute="leadingMargin" secondItem="8mN-rV-ql8" secondAttribute="leading" id="IEp-G7-u0o"/>
@@ -402,9 +404,11 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LJ3-9w-L4f" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R2W-LG-FqL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="R2W-LG-FqL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

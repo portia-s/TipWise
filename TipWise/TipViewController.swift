@@ -36,6 +36,7 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         screenHeight = Float(UIScreen.main.bounds.height)
         print("ScreenHeight in ViewDidLoad -> ", screenHeight)
         //to obtain keyboard height
+        NotificationCenter.default.addObserver(self, selector: #selector(TipViewController.keyboardDidShow(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(TipViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         print("Keyboard Observer in ViewDidLoad")
         
@@ -75,7 +76,6 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
     
     override func viewWillAppear(_ animated: Bool) {
         //setup money fields according to currency chosen
-        
         myFormatter.numberStyle = NumberFormatter.Style.currency
         switch readFromNSUD().5 {
         case 0:
@@ -87,9 +87,9 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         case 3:
             myFormatter.locale = Locale(identifier: "ja_JP")
         case 4:
-            myFormatter.locale = Locale(identifier: "au_AU")
+            myFormatter.locale = Locale.current
         default:
-            myFormatter.locale = Locale(identifier: "ja_JP")
+            myFormatter.locale = Locale.current
         }
         
         
@@ -270,7 +270,8 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    func keyboardDidShow(_ notification: Notification) {
+        UIView.setAnimationsEnabled(true)
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyBoardHeight = Float(keyboardRectangle.height)
@@ -299,6 +300,9 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         }
     }
     
+    func keyboardWillShow(_ notification: Notification) {
+        UIView.setAnimationsEnabled(false)
+    }
     
 }
 

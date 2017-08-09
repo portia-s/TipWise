@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //print("Bill Amount @ Launch -> ",billAmnt_g)
         }
         
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         return true
     }
 
