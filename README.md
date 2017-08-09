@@ -7,7 +7,7 @@ A tip calculator for the Wise
 
 Submitted by: **Portia Sharma**
 
-Time spent: **8** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -18,23 +18,24 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 * [X] UI animations
-* [ ] Remembering the bill amount across app restarts (if <10mins)
-* [ ] Using locale-specific currency and currency thousands separators.
+* [X] Remembering the bill amount across app restarts (if <10mins)
+* [X] Using locale-specific currency and currency thousands separators.
 * [X] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
 The following **additional** features are implemented:
 
 - [X] List anything else that you can get done to improve the app functionality!
 * [X] Picker control to select number of person in the party to split the bill.
-* [X] Pre-set values of tip along with custom set value at settings.
+* [X] 3 Pre-set values of tip along with custom set value at settings.
+* [X] Decimal enable/disable for tip, total and split amounts in settings
+* [ ] Color themes 
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
 
-<img src='http://i.imgur.com/f040pTY.gifv' title='Video Walkthrough' width='' alt='Video Walkthrough' /> 
-<img src='https://github.com/portia-s/TipWise/blob/master/preWork_TipWise.gif'/>
+<img src='https://github.com/portia-s/TipWise/blob/master/preWork_TipWise_2.gif'/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
