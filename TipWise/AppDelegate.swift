@@ -9,14 +9,27 @@
 import UIKit
 import CoreData
 
+// global var for reloading billAmnt @tipVC if app restarts <10min
+var billAmnt_g: Double?
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // check if user returns to app within 10min, if so, recall billAmnt from NSUD
+        let timeAppReturns = Date.timeIntervalSinceReferenceDate
+        let defaults = UserDefaults.standard
+        let timeAppQuited = defaults.double(forKey: "timeAppQuitsKey")
+        if timeAppReturns - timeAppQuited < 10*60       //in seconds
+        {
+            billAmnt_g = defaults.value(forKey: "BillAmntKey") as? Double //reload billAmnt
+            //print("Bill Amount @ Launch -> ",billAmnt_g)
+        }
+        
         return true
     }
 
@@ -42,6 +55,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+        
+        // remember the time app quits and billAmnt to NSUD
+        //print("Bill Amount @ Terminate -> ",billAmnt_g)
+        let timeAppQuits = Date.timeIntervalSinceReferenceDate
+        let defaults = UserDefaults.standard
+        defaults.set(billAmnt_g, forKey: "BillAmntKey")
+        defaults.set(timeAppQuits, forKey: "timeAppQuitsKey")
+        defaults.synchronize()
+        billAmnt_g = 0    //clear billAmnt
     }
 
     // MARK: - Core Data stack

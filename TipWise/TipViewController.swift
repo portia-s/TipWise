@@ -27,64 +27,102 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
     
     var keyBoardHeight = Float()
     var screenHeight = Float()
+    var runOnce = true
+    
+    var myFormatter = NumberFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let screenHeight = UIScreen.main.bounds.height
+        screenHeight = Float(UIScreen.main.bounds.height)
+        print("ScreenHeight in ViewDidLoad -> ", screenHeight)
+        //to obtain keyboard height
+        NotificationCenter.default.addObserver(self, selector: #selector(TipViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        print("Keyboard Observer in ViewDidLoad")
+        
+        // billAmnt font resizing based on device defaultSize 50
         if screenHeight > 570 && screenHeight < 730 {
-            print("Screen Height -> ", screenHeight)
-            amountTextField.font = UIFont(name: "Avenir Next Condensed", size: 80)
+            amountTextField.font = UIFont(name: "Avenir Next Condensed", size: 70)
         }
         else {
             if screenHeight > 730 {
-                print("Screen Height -> ", screenHeight)
                 amountTextField.font = UIFont(name: "Avenir Next Condensed", size: 120)
-        }
+            }
         }
         
-        // Do any additional setup after loading the view, typically from a nib.
         //keyboard appears when app launches and billAmount textfield ready to take input
+        amountTextField.delegate = self
         amountTextField.becomeFirstResponder()
-        self.amountTextField.delegate = self
+        amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        print("Amount TextField First Responder in ViewDidLoad")
+        
         //pickerDatasource & Delegate declaration
         partySizePicker.dataSource = self
         partySizePicker.delegate = self
-        partySizePicker.selectedRow(inComponent: 0) //initial set to 1person inn party
-//        //billView height animations setup
-        billViewHeightConstraint.constant = 400
-        billView.layoutIfNeeded()
-        amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        //to obtain keyboard height
-        NotificationCenter.default.addObserver(self, selector: #selector(TipViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        partySizePicker.selectedRow(inComponent: 0) //initial set to 1person in party
         
+        print("Picker Delegate in ViewDidLoad")
+        
+        print("Screen & Keyboard Heights -> ", screenHeight, keyBoardHeight)
+        //reload billamnt if app restarted <10min otherwise nilAmnt
+        if billAmnt_g != nil {
+            print("billAmnt from NSUserDefaults in ViewDidLoad -> ", billAmnt_g)
+            amountTextField.text = "\(billAmnt_g!)"
+            calculateTip(self)
+        }
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
+        //setup money fields according to currency chosen
+        
+        myFormatter.numberStyle = NumberFormatter.Style.currency
+        switch readFromNSUD().5 {
+        case 0:
+            myFormatter.locale = Locale(identifier: "en_US")
+        case 1:
+            myFormatter.locale = Locale(identifier: "en_GB")
+        case 2:
+            myFormatter.locale = Locale(identifier: "fr_FR")
+        case 3:
+            myFormatter.locale = Locale(identifier: "ja_JP")
+        case 4:
+            myFormatter.locale = Locale(identifier: "au_AU")
+        default:
+            myFormatter.locale = Locale(identifier: "ja_JP")
+        }
+        
+        
         //tipValueControl.selectedSegmentIndex[3] = readFromNSUD().0
         let myCustomTipPercent = Int(readFromNSUD().0 * 100)
         tipValueControl.setTitle("\(myCustomTipPercent)%", forSegmentAt: 3)
         let tipPercent = [0.10, 0.15, 0.20, Double(readFromNSUD().0)]
         
-        //make certain billAmnt is valid double in case TF is nil then default is 0
+        //make certain billAmnt is valid double, in case TF is nil then default is 0
         let billAmount = Double(amountTextField.text!) ?? 0.00
         let tipAmount = billAmount * tipPercent[tipValueControl.selectedSegmentIndex]
         let totalAmount = billAmount + tipAmount
         totalBillWithTip = totalAmount
         let splitLabelValue = (totalAmount / Double(partySize)!)
-        splitLabel.text = String(format: "$%0.2f", splitLabelValue)
+        //splitLabel.text = String(format: "$%0.2f", splitLabelValue)
+        splitLabel.text = myFormatter.string(from: splitLabelValue as NSNumber)
         
         if readFromNSUD().1 == true {
-            tipLabel.text = String(format: "$%0.2f", tipAmount)
-            totalLabel.text = String(format: "$%0.2f", totalAmount)
-            splitLabel.text = String(format: "$%0.2f", splitLabelValue)
+            myFormatter.maximumFractionDigits = 2
+            tipLabel.text = myFormatter.string(from: tipAmount as NSNumber)
+            totalLabel.text = myFormatter.string(from: totalAmount as NSNumber)
+            splitLabel.text = myFormatter.string(from: splitLabelValue as NSNumber)
         }
         else {
-            tipLabel.text = String(format: "$%0.0f", tipAmount)
-            totalLabel.text = String(format: "$%0.0f", totalAmount)
-            splitLabel.text = String(format: "$%0.0f", splitLabelValue)
+            myFormatter.maximumFractionDigits = 0
+            tipLabel.text = myFormatter.string(from: tipAmount as NSNumber)
+            totalLabel.text = myFormatter.string(from: totalAmount as NSNumber)
+            splitLabel.text = myFormatter.string(from: splitLabelValue as NSNumber)
         }
         
         //splitLabel.text = internalSplitCalculation(text: partySizetextField.text!)
+        
+        //
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,7 +132,7 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
     
     //dismiss keyboard of textfields on view tap
     @IBAction func onTap(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
+        //view.endEditing(true)
     }
     
     //calculate tip when amtTF and/or tipSeg change values
@@ -102,49 +140,31 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         
         let tipPercent = [0.10, 0.15, 0.20, Double(readFromNSUD().0)]
         
-        //make certain billAmnt is valid double in case TF is nil then default is 0
+        //make certain billAmnt is valid double, in case TF is nil then default is 0
         let billAmount = Double(amountTextField.text!) ?? 0.00
         let tipAmount = billAmount * tipPercent[tipValueControl.selectedSegmentIndex]
         let totalAmount = billAmount + tipAmount
         totalBillWithTip = totalAmount
         let splitLabelValue = (totalAmount / Double(partySize)!)
-        splitLabel.text = String(format: "$%0.2f", splitLabelValue)
+        //splitLabel.text = String(format: "$%0.2f", splitLabelValue)
+        splitLabel.text = myFormatter.string(from: splitLabelValue as NSNumber)
         
         
         if readFromNSUD().1 == true {
-            tipLabel.text = String(format: "$%0.2f", tipAmount)
-            totalLabel.text = String(format: "$%0.2f", totalAmount)
-            splitLabel.text = String(format: "$%0.2f", splitLabelValue)
+            tipLabel.text = myFormatter.string(from: tipAmount as NSNumber)
+            totalLabel.text = myFormatter.string(from: totalAmount as NSNumber)
+            splitLabel.text = myFormatter.string(from: splitLabelValue as NSNumber)
         }
         else {
-            tipLabel.text = String(format: "$%0.0f", tipAmount)
-            totalLabel.text = String(format: "$%0.0f", totalAmount)
-            splitLabel.text = String(format: "$%0.0f", splitLabelValue)
+            tipLabel.text = myFormatter.string(from: tipAmount as NSNumber)
+            totalLabel.text = myFormatter.string(from: totalAmount as NSNumber)
+            splitLabel.text = myFormatter.string(from: splitLabelValue as NSNumber)
         }
         //No split rounding earlier
         //splitLabel.text = internalSplitCalculation(text: partySizetextField.text!)
-        
     }
     
-//    @IBAction func calculateSplit(_ sender: UITextField) {
-//        splitLabel.text = internalSplitCalculation(text: sender.text!)
-//    }
-    
-    func splitCalculation(text: String) -> String {
-        if text != "0" {
-            let splitNumber = Double(text) ?? 1.0
-            let splitAmount = totalBillWithTip/splitNumber
-            if readFromNSUD().1 == true {
-                return String(format: "$%0.2f", splitAmount)
-            }
-            else {
-                return String(format: "$%0.0f", splitAmount)
-            }
-        }
-        return "NA"
-    }
-    
-    //Textfield delegate for decimal point and places
+    //    //Textfield delegate for decimal point and places
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool { // return NO to not change text
         
         //limit billAmount textfield to two decimal places for input
@@ -180,13 +200,15 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         }
     }
     
-    func readFromNSUD() -> (Double, Bool, Int, Double) {
+    func readFromNSUD() -> (Double, Bool, Int, Double, Int, Int) {
         let defaultsW = UserDefaults.standard
         let cTipValueR = defaultsW.double(forKey: "myCustomTipValueKey")
         let decimalTipEnableR = defaultsW.bool(forKey: "myDecimalTipEnableKey")
         let roundSplitIndexR = defaultsW.integer(forKey: "myRoundSplitIndexKey")
         let versionR = defaultsW.double(forKey: "myVersionKey")
-        return (cTipValueR, decimalTipEnableR, roundSplitIndexR, versionR)
+        let themeSelectedR = defaultsW.integer(forKey: "mySelectedThemeKey")
+        let currencySelectedR = defaultsW.integer(forKey: "mySelectedCurrencyKey")
+        return (cTipValueR, decimalTipEnableR, roundSplitIndexR, versionR, themeSelectedR, currencySelectedR)
     }
     
     //PickerView Required Methods
@@ -204,37 +226,80 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         partySize = partySizePickerData[row]
         splitLabel.text =  splitCalculation(text: partySize)
     }
+    func splitCalculation(text: String) -> String {
+        if text != "0" {
+            let splitNumber = Double(text) ?? 1.0
+            let splitAmount = totalBillWithTip/splitNumber
+            if readFromNSUD().1 == true {
+                return myFormatter.string(from: splitAmount as NSNumber)!
+            }
+            else {
+                return myFormatter.string(from: splitAmount as NSNumber)!
+            }
+        }
+        return "NA"
+    }
     
-    //func for checking if amount field has value
+    
+    //func to resize the billAmntView to animate tipTotalV & splitV
     func textFieldDidChange(_ amount: UITextField) {
+        //track billAmoount to be remembered if app quits
+        print("Screen & Keyboard Height in textFieldDidChange ****************-> ", screenHeight, keyBoardHeight)
+        billAmnt_g = Double(amount.text!)
         if amount.text == nil || amount.text == "" {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.billViewHeightConstraint.constant = CGFloat(Int(self.screenHeight) - Int(self.keyBoardHeight))
+            UIView.animate(withDuration: 0.2, delay: 0, options: .transitionCrossDissolve, animations: {
+                self.billViewHeightConstraint.constant = CGFloat(Int(self.screenHeight) - Int(self.keyBoardHeight) )
                 self.billView.superview?.layoutIfNeeded()
             })
         }
         else {
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .transitionCrossDissolve, animations: {
                 self.billViewHeightConstraint.constant = CGFloat(Int(self.screenHeight) - Int(self.keyBoardHeight) - 28 - 8 - 8 - 96 - 110 - 20)
                 self.billView.superview?.layoutIfNeeded()
             })
+            //            if runOnce {
+            //                if billAmnt_g != nil {
+            //                    amountTextField.text = "\(billAmnt_g!)"
+            //                    runOnce = false
+            //                    amountTextField.setNeedsLayout()
+            //                    amountTextField.layoutIfNeeded()
+            //                }
+            //            }
         }
+        billView.layoutSubviews()
+        
     }
     
     func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyBoardHeight = Float(keyboardRectangle.height)
+            print("Screen & Keyboard Height in KeyboardWillShow -> ", screenHeight, keyBoardHeight)
             
             screenHeight = Float(UIScreen.main.bounds.height)
-            textFieldDidChange(amountTextField)
+            //textFieldDidChange(amountTextField)
+            //billAmnt_g = Double(amount.text!)
+            if billAmnt_g == nil {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.billViewHeightConstraint.constant = CGFloat(Int(self.screenHeight) - Int(self.keyBoardHeight) )
+                    self.billView.superview?.layoutIfNeeded()
+                })
+            }
+            else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.billViewHeightConstraint.constant = CGFloat(Int(self.screenHeight) - Int(self.keyBoardHeight) - 28 - 8 - 8 - 96 - 110 - 20)
+                    self.billView.superview?.layoutIfNeeded()
+                })
+            }
             //billView height animations setup
-//            billViewHeightConstraint.constant = CGFloat(Int(screenHeight) - Int(keyBoardHeight) - 28 - 8 - 8 - 96 - 110 - 20)
-//            print(keyBoardHeight, screenHeight)
-//            billView.layoutIfNeeded()
-
+            //            billViewHeightConstraint.constant = CGFloat(Int(screenHeight) - Int(keyBoardHeight) - 28 - 8 - 8 - 96 - 110 - 20)
+            //            print(keyBoardHeight, screenHeight)
+            //            billView.layoutIfNeeded()
+            
         }
     }
+    
+    
 }
 
 
