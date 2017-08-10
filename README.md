@@ -29,6 +29,7 @@ The following **additional** features are implemented:
 * [X] 3 Preset values of tip along with customizable tip value at settings.
 * [X] Decimal enable/disable for tip, total and split amounts availble at settings.
 * [X] 4 Preset & formatted currencies in addition to locale-specific "auto" currency.
+* [X] Cool app icon that stands out on your phone screen!!
 * [ ] 3 Color themes to choose from.
 
 ## Video Walkthrough 
