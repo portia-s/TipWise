@@ -64,16 +64,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8b-3q-P21">
                                 <rect key="frame" x="0.0" y="508" width="375" height="75"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-yc-AMY">
-                                        <rect key="frame" x="58" y="18" width="309" height="63"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="309" id="cYL-GJ-41K"/>
-                                            <constraint firstAttribute="height" constant="63" id="vP1-Yd-D0C"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="40"/>
-                                        <color key="textColor" red="0.30588235294117649" green="0.38039215686274508" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ol-f3-Bv9">
                                         <rect key="frame" x="8" y="10" width="25" height="21"/>
                                         <constraints>
@@ -104,6 +94,16 @@
                                         <color key="textColor" red="0.30588235294117649" green="0.38039215686274508" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CeP-yc-AMY">
+                                        <rect key="frame" x="58" y="18" width="309" height="63"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="309" id="cYL-GJ-41K"/>
+                                            <constraint firstAttribute="height" constant="63" id="vP1-Yd-D0C"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="40"/>
+                                        <color key="textColor" red="0.30588235294117649" green="0.38039215686274508" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44705882352941173" green="0.74117647058823533" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -121,7 +121,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeG-iC-3VB">
                                 <rect key="frame" x="0.0" y="582" width="375" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqA-zK-qF0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Size " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqA-zK-qF0" userLabel="Party Size">
                                         <rect key="frame" x="8" y="29.5" width="85" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="85" id="IHW-K6-jVO"/>
@@ -205,10 +205,17 @@
                         <outlet property="amountTextField" destination="WhM-2V-uxn" id="wB7-Oa-L1M"/>
                         <outlet property="billView" destination="xV3-sJ-Oji" id="tr7-oh-Ivj"/>
                         <outlet property="billViewHeightConstraint" destination="fvx-MF-7JO" id="FLX-Gu-0De"/>
+                        <outlet property="partySizeLAbel" destination="qqA-zK-qF0" id="Hs8-2q-gJa"/>
                         <outlet property="partySizePicker" destination="Brf-YY-PNM" id="AC0-hF-g4q"/>
+                        <outlet property="perPerson" destination="nG4-uL-kLn" id="2Uh-me-UK6"/>
                         <outlet property="splitLabel" destination="aD5-ir-sq2" id="Jt4-ta-Tev"/>
+                        <outlet property="splitView" destination="aeG-iC-3VB" id="eWD-cF-bK5"/>
+                        <outlet property="tip" destination="8Ol-f3-Bv9" id="luJ-J3-DZR"/>
                         <outlet property="tipLabel" destination="gqO-c6-zNk" id="m5C-v6-HXp"/>
+                        <outlet property="tipValue" destination="f8b-3q-P21" id="lil-fW-ja7"/>
                         <outlet property="tipValueControl" destination="kFd-ue-p3F" id="tTP-VN-mh3"/>
+                        <outlet property="tipWiseView" destination="8bC-Xf-vdC" id="jRM-eZ-AKb"/>
+                        <outlet property="total" destination="FLg-lR-w5e" id="VmT-h8-brJ"/>
                         <outlet property="totalLabel" destination="CeP-yc-AMY" id="mOq-dI-Yos"/>
                     </connections>
                 </viewController>
@@ -244,7 +251,7 @@
                                             <constraint firstAttribute="width" constant="106" id="v9D-Wi-v9U"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph8-cU-Kfb">
@@ -253,7 +260,7 @@
                                             <constraint firstAttribute="height" constant="21" id="7Hk-hR-C1q"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="11" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="thL-l0-qkC">
@@ -282,7 +289,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Decimal for Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePf-RM-EKP">
                                         <rect key="frame" x="8" y="38" width="185" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bhv-Up-fNZ">
@@ -307,10 +314,10 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Themes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ef-cS-lSa">
                                         <rect key="frame" x="8" y="20" width="62" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vZr-nV-dbv">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vZr-nV-dbv">
                                         <rect key="frame" x="8" y="48" width="327" height="29"/>
                                         <segments>
                                             <segment title="Go Green"/>
@@ -338,7 +345,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnZ-Oc-gDd">
                                         <rect key="frame" x="8" y="20" width="71" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eKu-gX-T3a">
@@ -386,12 +393,17 @@
                     <connections>
                         <outlet property="currencyLabel" destination="cnZ-Oc-gDd" id="qf3-f2-Wsn"/>
                         <outlet property="currencySelector" destination="eKu-gX-T3a" id="zE3-s1-FsA"/>
+                        <outlet property="currencyView" destination="uRW-gn-b3d" id="YoB-Jj-BVa"/>
                         <outlet property="customTipLabel" destination="uhJ-MO-MQU" id="cR3-iv-0tn"/>
                         <outlet property="customTipValueLabel" destination="ph8-cU-Kfb" id="m6q-Qd-FzJ"/>
                         <outlet property="customTipValueSlider" destination="thL-l0-qkC" id="fVD-aa-HLH"/>
+                        <outlet property="customTipView" destination="reL-z9-87H" id="jeU-FS-0AR"/>
                         <outlet property="decimalTipLabel" destination="ePf-RM-EKP" id="3m2-dh-sT7"/>
                         <outlet property="decimalTipSwitch" destination="Bhv-Up-fNZ" id="xlv-l5-6Zo"/>
+                        <outlet property="decimalTipView" destination="xwj-oK-kOV" id="vpe-s9-2EH"/>
+                        <outlet property="settingsView" destination="ZX1-qU-5PL" id="6z2-XT-1y7"/>
                         <outlet property="themeSelector" destination="vZr-nV-dbv" id="Mg6-Qy-7Ee"/>
+                        <outlet property="themeView" destination="8mN-rV-ql8" id="b60-9x-Exa"/>
                         <outlet property="themesLabel" destination="0Ef-cS-lSa" id="kWs-Td-uih"/>
                     </connections>
                 </viewController>
@@ -404,7 +416,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LJ3-9w-L4f" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="R2W-LG-FqL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="R2W-LG-FqL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
