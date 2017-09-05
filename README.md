@@ -30,17 +30,14 @@ The following **additional** features are implemented:
 * [X] Decimal enable/disable for tip, total and split amounts availble at settings.
 * [X] 4 Preset & formatted currencies in addition to locale-specific "auto" currency.
 * [X] Cool app icon that stands out on your phone screen!!
-* [X] 3 Color themes to choose from.
+* [ ] 3 Color themes to choose from.
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
+
 <img src='https://github.com/portia-s/TipWise/blob/master/preWork_TipWise_5.gif'/>
-
-TipWise Themes Demo
-
-<img src='https://github.com/portia-s/TipWise/blob/master/preWork_TipWise_Themes.gif'/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
