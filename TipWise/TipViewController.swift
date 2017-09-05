@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import CoreLocation
 
-class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate {
+class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     
     @IBOutlet weak var amountTextField: UITextField!
@@ -42,19 +41,8 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
     var myFormatter = NumberFormatter()
     var pickerColor = UIColor(rgb: 0x3B322C)
     
-    let myLocatinManager = CLLocationManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //find user location
-        myLocatinManager.delegate = self
-        myLocatinManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            myLocatinManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            myLocatinManager.requestLocation()
-        }
-        
         screenHeight = Float(UIScreen.main.bounds.height)
         //print("ScreenHeight in ViewDidLoad -> ", screenHeight)
         //to obtain keyboard height
@@ -102,25 +90,19 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         partySizePicker.reloadAllComponents()
         //setup money fields according to currency chosen
         myFormatter.numberStyle = NumberFormatter.Style.currency
-        //check which currency is chosen
-        if userSettingsRead.6 == true {
-            //currency is GPS based
-        }
-        else {
-            switch userSettingsRead.5 {
-            case 0:
-                myFormatter.locale = Locale(identifier: "en_US")
-            case 1:
-                myFormatter.locale = Locale(identifier: "en_GB")
-            case 2:
-                myFormatter.locale = Locale(identifier: "fr_FR")
-            case 3:
-                myFormatter.locale = Locale(identifier: "ja_JP")
-            case 4:
-                myFormatter.locale = Locale.current
-            default:
-                myFormatter.locale = Locale.current
-            }
+        switch userSettingsRead.5 {
+        case 0:
+            myFormatter.locale = Locale(identifier: "en_US")
+        case 1:
+            myFormatter.locale = Locale(identifier: "en_GB")
+        case 2:
+            myFormatter.locale = Locale(identifier: "fr_FR")
+        case 3:
+            myFormatter.locale = Locale(identifier: "ja_JP")
+        case 4:
+            myFormatter.locale = Locale.current
+        default:
+            myFormatter.locale = Locale.current
         }
         
         //tipValueControl.selectedSegmentIndex[3] = readFromNSUD().0
@@ -230,7 +212,7 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         }
     }
     
-    func readFromNSUD() -> (Double, Bool, Int, Double, Int, Int, Bool) {
+    func readFromNSUD() -> (Double, Bool, Int, Double, Int, Int) {
         let defaultsW = UserDefaults.standard
         let cTipValueR = defaultsW.double(forKey: "myCustomTipValueKey")
         let decimalTipEnableR = defaultsW.bool(forKey: "myDecimalTipEnableKey")
@@ -238,8 +220,7 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         let versionR = defaultsW.double(forKey: "myVersionKey")
         let themeSelectedR = defaultsW.integer(forKey: "mySelectedThemeKey")
         let currencySelectedR = defaultsW.integer(forKey: "mySelectedCurrencyKey")
-        let currentLocationEnableR = defaultsW.bool(forKey: "myCurrentLocationEnableKey")
-        return (cTipValueR, decimalTipEnableR, roundSplitIndexR, versionR, themeSelectedR, currencySelectedR, currentLocationEnableR)
+        return (cTipValueR, decimalTipEnableR, roundSplitIndexR, versionR, themeSelectedR, currencySelectedR)
     }
     
     //PickerView Required Methods
@@ -413,16 +394,6 @@ class TipViewController: UIViewController, UITextFieldDelegate, UIPickerViewData
         }
     }
     
-    //location manager methods
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let userLocation = locations.first {
-            print(userLocation)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to find user's location: \(error.localizedDescription)")
-    }
 }
 
 

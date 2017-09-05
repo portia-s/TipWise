@@ -17,9 +17,6 @@ class SettingsViewController: UIViewController {
     //@IBOutlet weak var roundSplitControl: UISegmentedControl!
     @IBOutlet weak var themeSelector: UISegmentedControl!
     @IBOutlet weak var currencySelector: UISegmentedControl!
-    @IBOutlet weak var currentLocationSwitch: UISwitch!
-    
-
     
     @IBOutlet weak var customTipLabel: UILabel!
     @IBOutlet weak var decimalTipLabel: UILabel!
@@ -53,8 +50,7 @@ class SettingsViewController: UIViewController {
             customTipValueSlider.value = 0.0
             decimalTipSwitch.isOn = false
             //roundSplitControl.selectedSegmentIndex = 0
-            currentLocationSwitch.isOn = false
-            saveToNSUD(cTipValue: 0.0, decimalTipEnable: false, roundSplitIndex: 2, version: 1.0, themeSelected: 2, currencySelected: 0, currentLocationEnable: false )
+            saveToNSUD(cTipValue: 0.0, decimalTipEnable: false, roundSplitIndex: 2, version: 1.0, themeSelected: 2, currencySelected: 0)
         }
         else {
             let tipPercentR = 100 * userSettings.0
@@ -64,7 +60,6 @@ class SettingsViewController: UIViewController {
             //roundSplitControl.selectedSegmentIndex = readFromNSUD().2
             themeSelector.selectedSegmentIndex = userSettings.4
             currencySelector.selectedSegmentIndex = userSettings.5
-            currentLocationSwitch.isOn = userSettings.6
         }
     }
     
@@ -79,13 +74,6 @@ class SettingsViewController: UIViewController {
         themeSelector.selectedSegmentIndex = userSettings.4
         setTheme(selectedThemeSelectorValue: userSettings.4)
         currencySelector.selectedSegmentIndex = userSettings.5
-        currentLocationSwitch.isOn = userSettings.6
-        if currentLocationSwitch.isOn {
-            currencySelector.isEnabled = true
-        }
-        else {
-            currencySelector.isEnabled = false
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,7 +81,7 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func saveToNSUD(cTipValue: Double, decimalTipEnable: Bool, roundSplitIndex: Int, version: Double, themeSelected: Int, currencySelected: Int, currentLocationEnable: Bool) {
+    func saveToNSUD(cTipValue: Double, decimalTipEnable: Bool, roundSplitIndex: Int, version: Double, themeSelected: Int, currencySelected: Int) {
         let defaultsW = UserDefaults.standard
         defaultsW.set(cTipValue, forKey: "myCustomTipValueKey")
         defaultsW.set(decimalTipEnable, forKey: "myDecimalTipEnableKey")
@@ -101,11 +89,10 @@ class SettingsViewController: UIViewController {
         defaultsW.set(version, forKey: "myVersionKey")
         defaultsW.set(themeSelected, forKey: "mySelectedThemeKey")
         defaultsW.set(currencySelected, forKey: "mySelectedCurrencyKey")
-        defaultsW.set(currentLocationEnable, forKey: "myCurrentLocationEnableKey")
         defaultsW.synchronize()
     }
     
-    func readFromNSUD() -> (Double, Bool, Int, Double, Int, Int, Bool) {
+    func readFromNSUD() -> (Double, Bool, Int, Double, Int, Int) {
         let defaultsR = UserDefaults.standard
         let cTipValueR = defaultsR.double(forKey: "myCustomTipValueKey")
         let decimalTipEnableR = defaultsR.bool(forKey: "myDecimalTipEnableKey")
@@ -113,8 +100,7 @@ class SettingsViewController: UIViewController {
         let versionR = defaultsR.double(forKey: "myVersionKey")
         let themeSelectedR = defaultsR.integer(forKey: "mySelectedThemeKey")
         let currencySelectedR = defaultsR.integer(forKey: "mySelectedCurrencyKey")
-        let currentLocationEnableR = defaultsR.bool(forKey: "myCurrentLocationEnableKey")
-        return (cTipValueR, decimalTipEnableR, roundSplitIndexR, versionR, themeSelectedR, currencySelectedR, currentLocationEnableR)
+        return (cTipValueR, decimalTipEnableR, roundSplitIndexR, versionR, themeSelectedR, currencySelectedR)
     }
     
     @IBAction func customTipValueSliderValueChanged(_ sender: UISlider) {
@@ -122,13 +108,13 @@ class SettingsViewController: UIViewController {
         let customTipFraction = Double(customTipPercent)/100.0
         customTipValueLabel.text = "\(customTipPercent)%"
         let userSettings = readFromNSUD()
-        saveToNSUD(cTipValue: customTipFraction, decimalTipEnable: userSettings.1, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: userSettings.5, currentLocationEnable: userSettings.6)
+        saveToNSUD(cTipValue: customTipFraction, decimalTipEnable: userSettings.1, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: userSettings.5)
     }
     
     @IBAction func decimalTipSwitchValueChanged(_ sender: UISwitch) {
         let userSettings = readFromNSUD()
         let decimalSwitchValue = decimalTipSwitch.isOn
-        saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: decimalSwitchValue, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: userSettings.5, currentLocationEnable: userSettings.6)
+        saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: decimalSwitchValue, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: userSettings.5)
     }
     
     @IBAction func currencySelectorValueChanged(_ sender: UISegmentedControl) {
@@ -136,27 +122,15 @@ class SettingsViewController: UIViewController {
         //let currencyCodesAvailable = ["USD", "GBP", "EUR", "JPY", "AUD"]
         //let currencyCodeSelected = currencyCodesAvailable[currencySelector.selectedSegmentIndex]
         //print("selectedCurrencyCode:", currencyCodeSelected)
-        saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: userSettings.1, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: currencySelector.selectedSegmentIndex, currentLocationEnable: userSettings.6)
+        saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: userSettings.1, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: currencySelector.selectedSegmentIndex)
     }
 
     @IBAction func themeSelectorValueChanged(_ sender: UISegmentedControl) {
         setTheme(selectedThemeSelectorValue: themeSelector.selectedSegmentIndex)
         let userSettings = readFromNSUD()
-        saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: userSettings.1, roundSplitIndex:userSettings.2, version: userSettings.3, themeSelected: themeSelector.selectedSegmentIndex, currencySelected: userSettings.5, currentLocationEnable: userSettings.6)
+        saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: userSettings.1, roundSplitIndex:userSettings.2, version: userSettings.3, themeSelected: themeSelector.selectedSegmentIndex, currencySelected: userSettings.5)
     }
 
-    @IBAction func currentLocationValueChanged(_ sender: UISwitch) {
-        let userSettings = readFromNSUD()
-        let currentLocationSwitchValue = currentLocationSwitch.isOn
-        if currentLocationSwitch.isOn {
-            currencySelector.isEnabled = false  //current location decides currency
-            saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: userSettings.1, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: userSettings.5, currentLocationEnable: currentLocationSwitchValue)
-        }
-        else {
-            currencySelector.isEnabled = true   //pick your own currency
-            saveToNSUD(cTipValue: userSettings.0, decimalTipEnable: userSettings.1, roundSplitIndex: userSettings.2, version: userSettings.3, themeSelected: userSettings.4, currencySelected: userSettings.5, currentLocationEnable: currentLocationSwitchValue)
-        }
-    }
 /*
     @IBAction func roundSplitControlSegmentValueChanged(_ sender: UISegmentedControl) {
         let selectedValue = roundSplitControl.selectedSegmentIndex
