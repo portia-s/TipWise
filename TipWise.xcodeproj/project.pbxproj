@@ -17,6 +17,7 @@
 		2D01BE1A1F369DC20008FDAE /* Theme0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE171F369DC20008FDAE /* Theme0.swift */; };
 		2D01BE1E1F369E470008FDAE /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE1D1F369E470008FDAE /* TipViewController.swift */; };
 		2D01BE201F369EE60008FDAE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D01BE1F1F369EE60008FDAE /* SettingsViewController.swift */; };
+		2D445F7F1F63B089002640DF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D445F7E1F63B089002640DF /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +44,6 @@
 		2D01BDEE1F34093E0008FDAE /* TipWise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TipWise.xcdatamodel; sourceTree = "<group>"; };
 		2D01BDF01F34093E0008FDAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D01BDF31F34093E0008FDAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		2D01BDF51F34093E0008FDAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D01BDFA1F34093E0008FDAE /* TipWiseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TipWiseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D01BDFE1F34093E0008FDAE /* TipWiseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipWiseTests.swift; sourceTree = "<group>"; };
 		2D01BE001F34093E0008FDAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +53,7 @@
 		2D01BE171F369DC20008FDAE /* Theme0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme0.swift; sourceTree = "<group>"; };
 		2D01BE1D1F369E470008FDAE /* TipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
 		2D01BE1F1F369EE60008FDAE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = ../SettingsViewController.swift; sourceTree = "<group>"; };
+		2D445F7E1F63B089002640DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +111,7 @@
 				2D01BDEA1F34093E0008FDAE /* Main.storyboard */,
 				2D01BDF01F34093E0008FDAE /* Assets.xcassets */,
 				2D01BDF21F34093E0008FDAE /* LaunchScreen.storyboard */,
-				2D01BDF51F34093E0008FDAE /* Info.plist */,
+				2D445F7E1F63B089002640DF /* Info.plist */,
 				2D01BDED1F34093E0008FDAE /* TipWise.xcdatamodeld */,
 			);
 			path = TipWise;
@@ -244,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D445F7F1F63B089002640DF /* Info.plist in Resources */,
 				2D01BDF41F34093E0008FDAE /* LaunchScreen.storyboard in Resources */,
 				2D01BDF11F34093E0008FDAE /* Assets.xcassets in Resources */,
 				2D01BDEC1F34093E0008FDAE /* Main.storyboard in Resources */,
